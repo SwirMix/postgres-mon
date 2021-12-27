@@ -1,8 +1,0 @@
-version: "3.9"
-services:
-  percona:
-    image: percona/pmm-server:latest
-    ports:
-      - "443:443"
-    volumes:
-      - ./var:/var/lib/
