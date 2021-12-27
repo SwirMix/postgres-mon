@@ -11,9 +11,27 @@ services:
     volumes:
       - ./postgresql/pgdata:/var/lib/postgresql/data
       - ./postgresql/2. Init Database:/docker-entrypoint-initdb.d
-  percona:
+  pmm-data:
     image: percona/pmm-server:latest
-    ports:
-      - "443:443"
+    container_name: pmm-data-percona
     volumes:
-      - ./percona/var:/var
+      - ./percona/prometheus/data:/opt/prometheus/data
+      - ./percona/consul-data:/opt/consul-data
+      - ./percona/mysql:/var/lib/mysql
+      - ./percona/grafana:/var/lib/grafana
+    entrypoint: /bin/true
+  pmm-server:
+    image: percona/pmm-server:latest
+    container_name: pmm-server
+    ports:
+      - '81:80'
+    restart: always
+    environment:
+      - SERVER_USER=pefcona
+      - SERVER_PASSWORD=pefcona
+      - METRICS_RETENTION=720h
+      - METRICS_MEMORY=4194304
+      - METRICS_RESOLUTION=1s
+      - QUERIES_RETENTION=30
+    volumes_from:
+      - pmm-data
