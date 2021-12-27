@@ -13,10 +13,6 @@ services:
       - ./postgresql/2. Init Database:/docker-entrypoint-initdb.d
   percona:
     image: percona/pmm-server:latest
-    environment:
-      POSTGRES_DB: "perfcona"
-      POSTGRES_USER: "perfcona"
-      POSTGRES_PASSWORD: "perfcona"
     ports:
       - "443:443"
     volumes:

@@ -2,10 +2,6 @@ version: "3.9"
 services:
   percona:
     image: percona/pmm-server:latest
-    environment:
-      POSTGRES_DB: "perfcona"
-      POSTGRES_USER: "perfcona"
-      POSTGRES_PASSWORD: "perfcona"
     ports:
       - "443:443"
     volumes:
