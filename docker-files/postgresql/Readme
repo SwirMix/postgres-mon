@@ -1,0 +1,16 @@
+https://habr.com/ru/post/578744/ - отличный туториал по postgresql  b  docker
+1) Официальный образ postgresql
+https://hub.docker.com/_/postgres
+https://github.com/percona/pg_stat_monitor - расширение для posrtgresql для интеграции в percona
+
+2) docker-compose -f postgresql-docker.yaml up
+Поднимется docker контейнер и проинициализируется БД. Скрипт инициализации находится в ./2. Init Database
+Подробности подключения в postgresql-docker.yaml
+подробности созданной схемы БД в demo-20161013.pdf
+
+3) Устанавливаем, создаем расширения в БД и включаем их.
+ALTER SYSTEM SET shared_preload_libraries = pg_stat_statements;
+ALTER SYSTEM SET shared_preload_libraries = 'pg_stat_monitor';
+
+4) Заходим в контейнер и проделываем шаги для подключения репозитория:
+https://www.percona.com/doc/percona-repo-config/installing.html

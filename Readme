@@ -1,0 +1,4 @@
+https://www.percona.com/software/pmm/quickstart#
+
+1. Скачиваем образ percona: docker pull percona/pmm-server
+2. Запускаем контейнер:
