@@ -25,6 +25,7 @@ services:
     container_name: pmm-server
     ports:
       - '81:80'
+      - '9090:9090'
     restart: always
     environment:
       - SERVER_USER=pefcona

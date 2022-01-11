@@ -1,0 +1,16 @@
+Домашняя директория БД внутри контейнера:
+/var/lib/postgresql/data
+1. Выгружаем релиз
+wget https://github.com/zubkov-andrei/pg_profile/releases/download/0.3.6/pg_profile--0.3.6.tar.gz
+
+2. Разархивируем архив в $(pg_config --sharedir)/extension. В моем случае данного контейнера это: /usr/share/postgresql/13/extension
+tar xzf pg_profile--0.3.6.tar.gz --directory $(pg_config --sharedir)/extension
+
+3. Создание нужных расширений.
+create SCHEMA profile;
+CREATE EXTENSION dblink schema profile;
+CREATE EXTENSION pg_profile SCHEMA profile;
+
+
+psql -Aqtc "SELECT profile.get_report(2,3)" -o report_2_3.html
+
